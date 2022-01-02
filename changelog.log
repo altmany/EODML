@@ -1,0 +1,21 @@
+1.10 (2022-01-01)
+  - Fixes for parallelized workers
+
+1.09 (2021-07-01)
+  - Fixes for some complex data structs returned by EOD in certain cases
+  - MacBookPro: handled unsolicited MacOS changes of computer name that affected activation
+
+1.08 (2021-02-21)
+  - Minor fixes
+
+1.07 (2020-07-29)
+  - Fixed default FromDate/ToDate of intraday prices query
+
+1.06 (2020-07-14)
+  - Minor fixes
+
+1.04 (2020-01-01)
+  - First public release
+
+1.00 (2019-08-12)
+  - Beta installation
