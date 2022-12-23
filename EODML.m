@@ -23,22 +23,37 @@ function [data, errMsg] = EODML(action, parameters, varargin) %#ok
 %        Order          (String)  default='asc'; either 'asc' or 'desc'
 %        FromDate       (Integer or String) default=[]; earliest data date
 %        ToDate         (Integer or String) default=[]; latest data date
+%        Interval       (String)  default='5m'; one of '5m','1m','1hr'
 %
 %     Fundamentals:
+%        DataType       (String)  default='standard'; one of 'standard','bulk','insiderTrading','marketCap'
 %        Symbols        (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'}
 %        SecType        (String)  default='equity'; one of 'equity','index','bond'
+%        FromDate       (Integer or String) default=[]; earliest data date
+%        ToDate         (Integer or String) default=[]; latest data date
 %
 %     Splits,Dividends,Earnings,Shorts:
+%        DataType       (String)  default='standard'; one of 'standard','trends' (trends is only relevant to earnings)
 %        Symbols        (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'}
 %        FromDate       (Integer or String) default=[]; earliest data date
 %        ToDate         (Integer or String) default=[]; latest data date
 %
 %     Technicals:
-%        Symbols        (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'}
-%        FromDate       (Integer or String) default=[]; earliest data date
-%        ToDate         (Integer or String) default=[]; latest data date
-%        Function       (String)  default='SMA'; one of 'SMA','EMA','WMA','RSI','AvgVol','SplitAdjusted'
-%        Period         (Number)  default=50; number of data points used to calculate the function (2-100k)
+%        Symbols         (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'}
+%        FromDate        (Integer or String) default=[]; earliest data date
+%        ToDate          (Integer or String) default=[]; latest data date
+%        Function        (String)  default='SMA'; one of 'SMA','EMA','WMA','RSI','StdDev','AvgVol',
+%                                  'Volatility','SplitAdjusted','AvgVolCcy','Stochastic','StochRSI',
+%                                  'Slope','DMI','ADX','MACD','ATR','CCI','SAR','BBands'
+%        Period          (Number)  default=50; number of data points used to calculate the function (2-100k)
+%        FastPeriod      (Number)  default=12; used by MACD
+%        SlowPeriod      (Number)  default=26; used by MACD
+%        SignalPeriod    (Number)  default=9;  used by MACD
+%        FastKPeriod     (Number)  default=14; used by Stochastic, StochRSI
+%        FastDPeriod     (Number)  default=14; used by StochRSI
+%        SlowKPeriod     (Number)  default=3;  used by Stochastic
+%        SlowDPeriod     (Number)  default=3;  used by Stochastic
+%        AdjustDividends (Logical) default=1 or true; if false or 0, close prices are only adjusted for splits, not dividends
 %
 %     Options:
 %        Symbols        (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'}
@@ -46,6 +61,7 @@ function [data, errMsg] = EODML(action, parameters, varargin) %#ok
 %        ToExpiryDate   (Integer or String) default=[]; latest data date
 %        FromTradeDate  (Integer or String) default=[]; earliest data date
 %        ToTradeDate    (Integer or String) default=[]; latest data date
+%        ContractName   (String)  default=''; query only the specified contract e.g. 'AAPL180420P00002500'
 %
 %     IPO:
 %        FromDate       (Integer or String) default=[]; earliest data date

@@ -1,3 +1,12 @@
+1.11 (2022-09-08)
+  - Added support for 1hr and 1min intraday data (where available)
+  - Added support for new functions & parameters in technicals query
+  - Added support for ContractName filter parameter in options query
+  - Added support for Filter parameter in standard fundamentals query
+  - Added support for bulk, insiderTrading & marketCap fundamentals query
+  - Added support for earnings trends query
+  - Changed query limits for Free,Standard licenses (Analyst,Pro licenses unchanged)
+
 1.10 (2022-01-01)
   - Fixes for parallelized workers
 
