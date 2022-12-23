@@ -24,22 +24,22 @@ This downloaded version is fully-functional and free for a full year. The free l
 Simple Matlab commands fetch market data from EODHistoricalData:
  * Historic, intra-day and live (delayed) market data – OHLC bars, adjusted close and volume data
  * Historic and upcoming splits, dividends, IPO, and earning events
- * Historic basic technicals – SMA, EMA, WMA, RSI, AvgVol
  * Historic short interests
+ * Historic technicals – SMA, EMA, WMA, RSI, AvgVol, Slope (regression), DMI, DMX, ATR, CCI, SAR, Bollinger, Stochastic, Volatility, etc.
  * Symbols lookup – all listed symbols in a certain exchange, or all exchanges that list a certain symbol
  * Option chains lookup – contract info, in/out of money, trade info, Greeks, implied volatility; grouped by expiration date
  * Fundamental info – corporate info, shares stats or bond data, technicals, split/dividend events, ESG scores, earnings, financials
  * Combine all of the above for a full-fledged end-to-end automated trading system using plain Matlab
  
 ### Additional program features
- * **Full solution** – EODML provides easy-to-use access to EODHistoricalData’s entire data-set within Matlab. Only the core Matlab is required – no additional toolbox or component is required.
+ * **Ease of use** – EODML provides convenient Matlab access to EOD data. Only the core Matlab is required – no additional toolbox or component is required.
  * **Stability** – EODML has been extensively tested. It is rock solid.
- * **Easy to use** – Users can access EODHistoricalData’s data by simple Matlab commands, without need for any Matlab programming. EODML simplifies the EODHistoricalData API in a very easy-to-use yet powerful interface that can be used by any Matlab user, novice or advanced.
- * **Novice and advanced users** – Users can use easy-to-use Matlab commands, to access EODHistoricalData’s data. Minimal or no programming is required to access this data.
+ * **Simple interface** – Access EOD data by simple Matlab commands, without need for any Matlab programming. EODML simplifies EODHistoricalData's API in a powerful yet easy-to-use interface.
+ * **Novice and advanced users** – Users access EOD data with simple Matlab commands. Minimal or no programming is required to access this data.
  * **Compatibility** – EODML works on all platforms where Matlab runs (Windows, Mac OS, Linux), using practically any recent Matlab release.
- * **Security** – EODML does not transmit any information externally except to EODHistoricalData, so your trading information are as safe as your own computer.
- * **Development** – EODML was developed by an acknowledged Matlab expert, who wrote the reference textbooks on Matlab-Java connectivity and Matlab performance, as well as the acclaimed [IB-Matlab connector](https://undocumentedmatlab.com/IB-Matlab) (Matlab connector to Interactive Brokers) and [IQML - Matlab connector to IQFeed](https://undocumentedmatlab.com/IQML). EODML is continuously improved and maintained.
+ * **Security** – EODML does not send any information externally except to EODHistoricalData, so your trading information are as safe as your own computer.
  * **Support** – Custom development and ongoing support is available directly from the developer, with extremely fast response times.
+ * **Development** – EODML was developed by an acknowledged Matlab expert, who wrote the reference textbooks on Matlab-Java connectivity and Matlab performance, as well as the acclaimed [IB-Matlab connector](https://undocumentedmatlab.com/IB-Matlab) (Matlab connector to Interactive Brokers) and [IQML - Matlab connector to IQFeed](https://undocumentedmatlab.com/IQML). EODML is continuously improved and maintained.
  * **Backtesting** – EODML does not include backtesting functionality. EODML’s author (Yair Altman) has extensive experience in developing complete backtesting and real-time trading applications. Yair will be happy to either develop a new application based on your specifications, or to integrate EODML into an existing application, under a consulting contract.
 
 ### Requirements
@@ -49,7 +49,7 @@ EODML is a Matlab connector to EODHistoricalData, so it naturally needs the user
 
 ### Compatibility
  * Platforms: EODML works on all platforms on which EODHistoricalData runs: Windows, Mac OS, Linux.
- * Matlab: EODML works on all Matlab releases since 2008, including the latest release (R2020a).
+ * Matlab: EODML works on all Matlab releases since 2008, including the latest release (R2022b).
 
 ### Installation
  1. Download or clone EODML into a local folder on your computer (preferably a separate EODML folder)
