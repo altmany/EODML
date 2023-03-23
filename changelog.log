@@ -1,9 +1,16 @@
+1.12 (2023-03-23)
+  - Added support for bulk historic exchange prices, splits, dividends, fundamentals (Pro license)
+  - Added support for Filter parameter in price queries
+  - Added support for AvgVolCcy (average trading volume in currency) technicals function
+  - Added support for AGGPeriod parameter for SplitAdjusted technicals queries
+  - Clarified the error message when user token is not authorized for some data-feed data
+
 1.11 (2022-09-08)
   - Added support for 1hr and 1min intraday data (where available)
   - Added support for new functions & parameters in technicals query
   - Added support for ContractName filter parameter in options query
   - Added support for Filter parameter in standard fundamentals query
-  - Added support for bulk, insiderTrading & marketCap fundamentals query
+  - Added support for InsiderTrading & MarketCap fundamentals query
   - Added support for earnings trends query
   - Changed query limits for Free,Standard licenses (Analyst,Pro licenses unchanged)
 

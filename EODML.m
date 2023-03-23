@@ -15,25 +15,36 @@ function [data, errMsg] = EODML(action, parameters, varargin) %#ok
 %        UseParallel    (Logical) default=0 or false; if true or 1, the query will be parallelized (Analyst/Pro license only)
 %        Debug          (Logical) default=0 or false; if true or 1, extra data will be displayed in Matlab console
 %        RaiseErrorMsgs (Logical) default=1 or true; if false or 0, errors set the errMsg output arg, rather than raise an error
+%        Order          (String)  default='asc'; either 'asc' or 'desc'
 %
 %     Prices:
-%        DataType       (String)  default='day'; one of 'day','week','month','live'
+%        DataType       (String)  default='day'; one of 'day','week','month','live','intraday','bulk' (bulk in Pro license only)
 %        Symbols        (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'}
 %        SecType        (String)  default='equity'; one of 'equity','index','bond'
-%        Order          (String)  default='asc'; either 'asc' or 'desc'
 %        FromDate       (Integer or String) default=[]; earliest data date
 %        ToDate         (Integer or String) default=[]; latest data date
-%        Interval       (String)  default='5m'; one of '5m','1m','1hr'
+%        Interval       (String)  default='5m'; one of '5m','1m','1hr'; only relevant when DataType='intraday'
+%        Exchange       (String)  default='US'; only relevant when DataType=bulk (Pro license only)
+%        Filter         (String)  default=''; coma-delimited fields e.g. 'close,change,volume'
 %
 %     Fundamentals:
-%        DataType       (String)  default='standard'; one of 'standard','bulk','insiderTrading','marketCap'
+%        DataType       (String)  default='standard'; one of 'standard','insiderTrading','marketCap','bulk' (bulk in Pro license)
 %        Symbols        (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'}
 %        SecType        (String)  default='equity'; one of 'equity','index','bond'
 %        FromDate       (Integer or String) default=[]; earliest data date
 %        ToDate         (Integer or String) default=[]; latest data date
+%        Exchange       (String)  default='US'; only relevant when DataType=bulk (Pro license only)
+%        Filter         (String)  default=''; coma-delimited groups/fields e.g. 'General,Financials::Balance_Sheet::yearly'
 %
-%     Splits,Dividends,Earnings,Shorts:
-%        DataType       (String)  default='standard'; one of 'standard','trends' (trends is only relevant to earnings)
+%     Splits, Dividends:
+%        DataType       (String)  default='standard'; either 'standard' or 'bulk' (bulk in Pro license only)
+%        Symbols        (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'} (unused in bulk)
+%        FromDate       (Integer or String) default=[]; earliest data date
+%        ToDate         (Integer or String) default=[]; latest data date (unused when DataType=bulk)
+%        Exchange       (String)  default='US'; only relevant when DataType=bulk (Pro license only)
+%
+%     Earnings, Shorts:
+%        DataType       (String)  default='standard'; either 'standard' or 'trends' (trends is only relevant to earnings)
 %        Symbols        (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'}
 %        FromDate       (Integer or String) default=[]; earliest data date
 %        ToDate         (Integer or String) default=[]; latest data date
@@ -42,9 +53,9 @@ function [data, errMsg] = EODML(action, parameters, varargin) %#ok
 %        Symbols         (String :-delimited or cell-array) default=''; e.g., 'IBM' or 'IBM:GOOG' or {'IBM','GOOG'}
 %        FromDate        (Integer or String) default=[]; earliest data date
 %        ToDate          (Integer or String) default=[]; latest data date
-%        Function        (String)  default='SMA'; one of 'SMA','EMA','WMA','RSI','StdDev','AvgVol',
-%                                  'Volatility','SplitAdjusted','AvgVolCcy','Stochastic','StochRSI',
-%                                  'Slope','DMI','ADX','MACD','ATR','CCI','SAR','BBands'
+%        Function        (String)  default='SMA'; one of 'SMA','EMA','WMA','RSI','StdDev','AvgVol','AvgVolCcy',
+%                                  'Volatility','SplitAdjusted','AvgVolCcy','Stochastic','StochRSI','Slope',
+%                                  'DMI','ADX','MACD','ATR','CCI','SAR','BBands'
 %        Period          (Number)  default=50; number of data points used to calculate the function (2-100k)
 %        FastPeriod      (Number)  default=12; used by MACD
 %        SlowPeriod      (Number)  default=26; used by MACD
@@ -53,6 +64,7 @@ function [data, errMsg] = EODML(action, parameters, varargin) %#ok
 %        FastDPeriod     (Number)  default=14; used by StochRSI
 %        SlowKPeriod     (Number)  default=3;  used by Stochastic
 %        SlowDPeriod     (Number)  default=3;  used by Stochastic
+%        AGGPeriod       (String)  default='day'; one of 'day','week','month'; used by SplitAdjusted function
 %        AdjustDividends (Logical) default=1 or true; if false or 0, close prices are only adjusted for splits, not dividends
 %
 %     Options:
@@ -70,8 +82,6 @@ function [data, errMsg] = EODML(action, parameters, varargin) %#ok
 %     Lookup:
 %        Symbol         (String) default='';  e.g., 'IBM'
 %        DataType       (String) default='symbol';  either 'symbol' or 'exchange'
-%
-% Refer to the User Guide for detailed documentation and usage examples.
 %
 % THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED
 % TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
