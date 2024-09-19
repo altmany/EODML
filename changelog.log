@@ -1,3 +1,6 @@
+1.13 (2023-11-06)
+  - Fixed missing timeout when reading webpages on R2023b
+
 1.12 (2023-03-23)
   - Added support for bulk historic exchange prices, splits, dividends, fundamentals (Pro license)
   - Added support for Filter parameter in price queries
