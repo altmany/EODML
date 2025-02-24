@@ -22,11 +22,13 @@ This downloaded version is fully-functional and free for a full year. The free l
 
 ### Main functionalities
 Simple Matlab commands fetch market data from EODHistoricalData:
- * Historic, intra-day and live (delayed) market data – OHLC bars, adjusted close and volume data
+ * Historic, intra-day and live (delayed) market data – OHLC bars, adjusted close, volume data, ticks
  * Historic and upcoming splits, dividends, IPO, and earning events
- * Historic short interests
+ * Historic and current short interests and market sentiments
  * Historic technicals – SMA, EMA, WMA, RSI, AvgVol, Slope (regression), DMI, DMX, ATR, CCI, SAR, Bollinger, Stochastic, Volatility, etc.
- * Symbols lookup – all listed symbols in a certain exchange, or all exchanges that list a certain symbol
+ * Symbols screeners with multiple filters
+ * Symbols and exchanges lookup – all listed symbols in a certain exchange, all exchanges that list a certain symbol, symbol changes etc.
+ * Macro indicators, economic events, news messages, ESG data
  * Option chains lookup – contract info, in/out of money, trade info, Greeks, implied volatility; grouped by expiration date
  * Fundamental info – corporate info, shares stats or bond data, technicals, split/dividend events, ESG scores, earnings, financials
  * Combine all of the above for a full-fledged end-to-end automated trading system using plain Matlab
@@ -49,7 +51,7 @@ EODML is a Matlab connector to EODHistoricalData, so it naturally needs the user
 
 ### Compatibility
  * Platforms: EODML works on all platforms on which EODHistoricalData runs: Windows, Mac OS, Linux.
- * Matlab: EODML works on all Matlab releases since 2008, including the latest release (R2022b).
+ * Matlab: EODML works on all Matlab releases since 2008, including the latest release (R2025a).
 
 ### Installation
  1. Download or clone EODML into a local folder on your computer (preferably a separate EODML folder)
