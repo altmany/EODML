@@ -1,3 +1,17 @@
+1.14 (2025-02-24)
+  - Added feature: tick prices
+  - Added feature: news messages
+  - Added feature: economic events
+  - Added feature: sentiments (historic/current)
+  - Added feature: macro indicators (historic/current)
+  - Added feature: index information and constituents (components)
+  - Added feature: exchanges data, lookup and listed symbols
+  - Added feature: screener for securities with multiple filters
+  - Added feature: ESG data for countries/sectors/companies
+  - Added support for Beta technical indicator function
+  - Added support for Acceleration & Maximum parameters in SAR technical query
+  - Added support for Docker installations
+
 1.13 (2023-11-06)
   - Fixed missing timeout when reading webpages on R2023b
 
